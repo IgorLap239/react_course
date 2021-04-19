@@ -3,10 +3,12 @@ import styled from 'styled-components';
 import { ButtonCheckout } from '../Style/ButtonCheckout';
 import { CountItem } from './CountItem';
 import { Toppings } from './Toppings';
+import { Choices } from './Choices';
 import { useCount } from '../Hooks/useCount';
 import { totalPriceItems } from '../Functions/secondaryFunction';
 import { formatCurrency } from '../Functions/secondaryFunction';
 import { useToppings } from '../Hooks/useToppings';
+import { useChoices } from '../Hooks/useChoices';
 
 const Overlay = styled.div`
   position: fixed;
@@ -63,6 +65,8 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
   
   const counter = useCount();
   const toppings = useToppings(openItem);
+  const choices = useChoices(openItem);
+  /*const isEdit = openItem.index > -1;*/
 
   const closeModal = (e) => {
     if(e.target.id === 'overlay')
@@ -72,8 +76,15 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
   const order = {
     ...openItem,
     count: counter.count,
-    topping: toppings.toppings
+    topping: toppings.toppings,
+    choice: choices.choice
   };
+
+  /*const editOrder = () => {
+    const newOrders = [...orders];
+    newOrders[openItem.index] = order;
+    setOrders(newOrders) 
+  }*/
 
   const addToOrder = (e) => {
     setOrders([...orders, order]);
@@ -92,11 +103,16 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
           </HeaderContent>
           <CountItem {...counter}/>
           {openItem.toppings && <Toppings {...toppings} />}
+          {openItem.choices && <Choices {...choices} openItem={openItem} />}
           <TotalPriceItem>
             <span>Цена:</span>
             <span>{formatCurrency(totalPriceItems(order))}</span>
           </TotalPriceItem>
-          <ButtonCheckout onClick={addToOrder}>Добавить</ButtonCheckout>
+          <ButtonCheckout onClick={addToOrder}
+                          disabled={order.choices && !order.choice}
+          >
+            Добавить
+          </ButtonCheckout>
         </Content>
       </Modal>
     </Overlay>
