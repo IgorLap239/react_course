@@ -21,7 +21,6 @@ const ChoiceLabel = styled.label`
 export function Choices({ openItem, choice, changeChoices}) {
   return (
     <>
-      <h3>Добавки</h3>
       <ChoiceWrap>
         {openItem.choices.map((item, i) => (
           <ChoiceLabel key={i}>
