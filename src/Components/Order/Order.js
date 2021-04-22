@@ -50,7 +50,7 @@ const EmptyList = styled.p`
   text-align: center;
 `;
 
-export const Order = ({ orders, setOrders, setOpenItem }) => {
+export const Order = ({ orders, setOrders, setOpenItem, authentification, logIn }) => {
 
   const deleteItem = index => {
     const newOrders = [...orders];
@@ -85,7 +85,13 @@ export const Order = ({ orders, setOrders, setOpenItem }) => {
         <span>{totalCounter}</span>
         <TotalPrice>{formatCurrency(total)}</TotalPrice>
       </Total>
-      <ButtonCheckout>Оформить</ButtonCheckout>
+      <ButtonCheckout onClick={() => {
+        if(authentification) {
+          console.log(orders);
+        } else {
+          logIn();
+        }
+      }}>Оформить</ButtonCheckout>
     </OrderStyled>
   )
 }
