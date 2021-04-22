@@ -65,12 +65,14 @@ export const Order = ({ orders, setOrders, setOpenItem, authentification, logIn,
   const dataBase = firebaseDatabase();
 
   const sendOrder = () => {
+    
     const newOrder = orders.map(projection(rulesData));
     dataBase.ref('orders').push().set({
       nameClient: authentification.displayName,
       email: authentification.email,
       order: newOrder
     });
+    console.log(newOrder);
     setOrders([]);
   };
 

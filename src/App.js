@@ -12,13 +12,15 @@ import { useOrders } from './Components/Hooks/useOrders';
 import { useAuth } from './Components/Hooks/useAuth';
 import { useTitle } from './Components/Hooks/useTitle';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyC-N6_99efHfSrL-ytctXz35wFbgZMOtjM",
-  authDomain: "mrdonalds-89069.firebaseapp.com",
-  projectId: "mrdonalds-89069",
-  storageBucket: "mrdonalds-89069.appspot.com",
-  messagingSenderId: "366937085848",
-  appId: "1:366937085848:web:3f3bc7fd6d9c9cbb547ded"
+
+ const firebaseConfig = {
+    apiKey: "AIzaSyC-N6_99efHfSrL-ytctXz35wFbgZMOtjM",
+    authDomain: "mrdonalds-89069.firebaseapp.com",
+    databaseURL: "https://mrdonalds-89069-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "mrdonalds-89069",
+    storageBucket: "mrdonalds-89069.appspot.com",
+    messagingSenderId: "366937085848",
+    appId: "1:366937085848:web:3f3bc7fd6d9c9cbb547ded"
 };
 
 firebase.initializeApp(firebaseConfig);
