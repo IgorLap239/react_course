@@ -10,7 +10,7 @@ export function useAuth(authFirebase) {
 
   const logOut = () => auth.signOut()
     .then()
-    .catch(err => console.error())
+    .catch(err => console.error());
 
   useEffect(() => {
       auth.onAuthStateChanged(user => {
@@ -21,7 +21,7 @@ export function useAuth(authFirebase) {
         }
       })
 
-  }, [authentification]);
+  }, [auth, authentification]);
 
   return { authentification, logIn, logOut };
 }
